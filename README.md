@@ -25,4 +25,4 @@ After installing the extension, go to your User settings in VSCode and search fo
 ## Prerequisites
 The Capture Startup Performance extension depends on the Salesforce Extension Pack.
 
-Prior to using the Capture Startup Performance extension, install the Salesforce Extension Pack(https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode) and its prerequisites.
+Prior to using the Capture Startup Performance extension, install the [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode) and its prerequisites.
