@@ -7,9 +7,7 @@ The Capture Startup Performance extension is a tool used by the IDE Experience T
 3. Store the parsed results in a new file for the IDE Experience Team to review as needed
 4. Send the parsed results to AppInsights
 
-The IDE Experience Team will be using the Capture Startup Performance extension for two main purposes:
-1. When customers report startup performance issues, they can easily install this extension and run the "SFDX: Capture Startup Performance" command, which will automatically capture their startup performance data and send it to AppInsights for the IDE Experience Team to query and analyze.
-2. There is an E2E test that automatically runs the "SFDX: Capture Startup Performance" command against the Nightly Build Develop of the Salesforce Extensions for VSCode each night. The E2E test runs the command with a special telemetry tag, which will send the results to a dashboard to track startup performance of each extension on each OS (Mac, Windows, Ubuntu) over time.
+When customers report startup performance issues, they can easily install this extension and run the "SFDX: Capture Startup Performance" command, which will automatically capture their startup performance data and send it to AppInsights for the IDE Experience Team to query and analyze.
 
 ## How to Use
 As a utility built for the IDE Experience Team's internal data collection, the Capture Startup Performance extension is not published and can only be installed via VSIX.
