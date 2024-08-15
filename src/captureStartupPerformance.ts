@@ -6,6 +6,10 @@
  */
 export class CaptureStartupPerformance {
   constructor() {
-    console.log('This is the Capture Startup Performance class!');
+    console.log('Constructor - This is the Capture Startup Performance class!');
   }
 }
+
+export const captureStartupPerformance = async (): Promise<void> => {
+  console.log('Constructor - This is the Capture Startup Performance class!');
+};

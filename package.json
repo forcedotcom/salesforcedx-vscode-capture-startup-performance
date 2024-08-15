@@ -18,7 +18,8 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.11.9",
-    "@types/jest": "^29.5.12"
+    "@types/jest": "^29.5.12",
+    "@types/vscode": "^1.86.0"
   },
   "scripts": {},
   "extensionDependencies": ["salesforce.salesforcedx-vscode-core"],
