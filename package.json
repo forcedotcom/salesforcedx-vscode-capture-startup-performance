@@ -23,15 +23,15 @@
         "menus": {
             "commandPalette": [
                 {
-                    "command": "placeholder",
-                    "when": "placeholder"
+                    "command": "sf.capture.startup.performance",
+                    "when": "sf:project_opened"
                 }
             ]
         },
         "commands": [
             {
-                "command": "placeholder",
-                "title": "placeholder"
+                "command": "sf.capture.startup.performance",
+                "title": "%capture_startup_performance_command_text%"
             }
         ]
     }
