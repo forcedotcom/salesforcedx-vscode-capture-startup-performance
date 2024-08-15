@@ -6,5 +6,5 @@
  */
 
 export const messages = {
-    capture_startup_performance_command_text: "SFDX: Capture Startup Performance"
+  capture_startup_performance_command_text: "SFDX: Capture Startup Performance"
 };

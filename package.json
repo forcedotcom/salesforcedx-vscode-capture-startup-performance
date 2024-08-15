@@ -1,38 +1,38 @@
 {
-    "name": "salesforcedx-vscode-capture-startup-performance",
-    "displayName": "Capture Extension Startup Performance",
-    "description": "Extension that captures the Extension Activation Stats from 'Developer: Startup Performance' and reports the data to Azure AppInsights",
-    "version": "1.0.0",
-    "publisher": "salesforce",
-    "repository": {
-        "url": "https://github.com/forcedotcom/salesforcedx-vscode-capture-startup-performance"
+  "name": "salesforcedx-vscode-capture-startup-performance",
+  "displayName": "Capture Extension Startup Performance",
+  "description": "Extension that captures the Extension Activation Stats from 'Developer: Startup Performance' and reports the data to Azure AppInsights",
+  "version": "1.0.0",
+  "publisher": "salesforce",
+  "repository": {
+    "url": "https://github.com/forcedotcom/salesforcedx-vscode-capture-startup-performance"
+  },
+  "icon": "images/VSCodeApex.png",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {},
+  "extensionDependencies": ["salesforce.salesforcedx-vscode-core"],
+  "contributes": {
+    "menus": {
+      "commandPalette": [
+          {
+            "command": "sf.capture.startup.performance",
+            "when": "sf:project_opened"
+          }
+      ]
     },
-    "icon": "images/VSCodeApex.png",
-    "license": "BSD-3-Clause",
-    "engines": {
-        "vscode": "^1.82.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "dependencies": {},
-    "devDependencies": {},
-    "scripts": {},
-    "extensionDependencies": ["salesforce.salesforcedx-vscode-core"],
-    "contributes": {
-        "menus": {
-            "commandPalette": [
-                {
-                    "command": "sf.capture.startup.performance",
-                    "when": "sf:project_opened"
-                }
-            ]
-        },
-        "commands": [
-            {
-                "command": "sf.capture.startup.performance",
-                "title": "%capture_startup_performance_command_text%"
-            }
-        ]
-    }
+    "commands": [
+      {
+        "command": "sf.capture.startup.performance",
+        "title": "%capture_startup_performance_command_text%"
+      }
+    ]
+  }
 }
