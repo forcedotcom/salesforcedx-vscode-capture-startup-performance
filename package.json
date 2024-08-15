@@ -16,7 +16,10 @@
     "Other"
   ],
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@types/jest": "^29.5.12"
+  },
   "scripts": {},
   "extensionDependencies": ["salesforce.salesforcedx-vscode-core"],
   "contributes": {
