@@ -28,8 +28,7 @@
     "menus": {
       "commandPalette": [
           {
-            "command": "sf.capture.startup.performance",
-            "when": "sf:project_opened"
+            "command": "sf.capture.startup.performance"
           }
       ]
     },

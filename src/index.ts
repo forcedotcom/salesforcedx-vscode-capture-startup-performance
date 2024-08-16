@@ -6,6 +6,7 @@
  */
 import * as vscode from 'vscode';
 import { captureStartupPerformance, CaptureStartupPerformance } from './captureStartupPerformance';
+// import { CoreExtensionService } from './services/CoreExtensionService';
 
 const registerCommands = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,4 +18,14 @@ const registerCommands = (
   );
 
   return vscode.Disposable.from(captureStartupPerformanceCmd);
+}
+
+export const activate = async (extensionContext: vscode.ExtensionContext) => {
+  console.log('elephant');
+  // CoreExtensionService.loadDependencies(extensionContext);
+  const commands = registerCommands(extensionContext);
+  extensionContext.subscriptions.push(commands);
+}
+
+export const deactivate = async (): Promise<void> => {
 }

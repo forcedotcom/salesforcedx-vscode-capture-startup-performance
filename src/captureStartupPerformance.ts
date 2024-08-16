@@ -11,5 +11,5 @@ export class CaptureStartupPerformance {
 }
 
 export const captureStartupPerformance = async (): Promise<void> => {
-  console.log('Constructor - This is the Capture Startup Performance class!');
+  console.log('Method - This is the Capture Startup Performance class!');
 };
