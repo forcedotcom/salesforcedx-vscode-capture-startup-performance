@@ -10,11 +10,12 @@
   "icon": "images/VSCodeApex.png",
   "license": "BSD-3-Clause",
   "engines": {
-    "vscode": "^1.82.0"
+    "vscode": "^1.86.0"
   },
   "categories": [
     "Other"
   ],
+  "main": "./out/src/index.js",
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.11.9",
@@ -24,6 +25,9 @@
   },
   "scripts": {},
   "extensionDependencies": ["salesforce.salesforcedx-vscode-core"],
+  "activationEvents": [
+    "workspaceContains:sfdx-project.json"
+  ],
   "contributes": {
     "menus": {
       "commandPalette": [
