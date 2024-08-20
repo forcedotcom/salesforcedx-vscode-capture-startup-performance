@@ -22,7 +22,7 @@ export const captureStartupPerformance = async (): Promise<void> => {
     await vscode.window.withProgress({
       location: vscode.ProgressLocation.Notification,
       title: 'SFDX: Capture Startup Performance',
-      cancellable: true
+      cancellable: false
       }, async (progress) => {
       progress.report({ message: 'Running...' });
 
