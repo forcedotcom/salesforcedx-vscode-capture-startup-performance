@@ -6,7 +6,6 @@
  */
 import * as vscode from 'vscode';
 import { captureStartupPerformance } from './captureStartupPerformance';
-// import { CoreExtensionService } from './services/CoreExtensionService';
 
 const registerCommands = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
