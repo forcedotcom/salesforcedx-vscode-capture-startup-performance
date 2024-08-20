@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import * as vscode from 'vscode';
-import { captureStartupPerformance, CaptureStartupPerformance } from './captureStartupPerformance';
+import { captureStartupPerformance } from './captureStartupPerformance';
 // import { CoreExtensionService } from './services/CoreExtensionService';
 
 const registerCommands = (
@@ -21,10 +21,10 @@ const registerCommands = (
 }
 
 export const activate = async (extensionContext: vscode.ExtensionContext) => {
-  console.log('elephant');
-  // CoreExtensionService.loadDependencies(extensionContext);
+  console.log('Capture Startup Performance extension - enter activate()');
   const commands = registerCommands(extensionContext);
   extensionContext.subscriptions.push(commands);
+  console.log('Capture Startup Performance extension - exit activate()');
 }
 
 export const deactivate = async (): Promise<void> => {

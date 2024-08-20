@@ -50,11 +50,6 @@ export const captureStartupPerformance = async (): Promise<void> => {
     // Show failure notification to the user
     vscode.window.showErrorMessage('SFDX: Capture Startup Performance command failed: ' + error.message);
   }
-
-  // TODO: also need to communicate with the customer
-    // is it possible to block the UI without also blocking what we need to do?
-    // is it possible to open a file but keep it hidden?
-    // TODO: schedule time with Meg after everything except telemetry is working and it can be demoed
 };
 
 // ------- Helper Functions -------
@@ -78,6 +73,7 @@ const copyContentsToFile = async(contents: string): Promise<void> => {}
 
 const sendToAppInsights = async(fileName: string): Promise<void> => {}
 
+// NOTE: This function and the lodash dependency are used only for testing purposes.
 const sleep = (ms: number): Promise<void> => {
   return new Promise(resolve => delay(resolve, ms));
 };
