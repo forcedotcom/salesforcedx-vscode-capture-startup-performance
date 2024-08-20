@@ -17,33 +17,39 @@ export class CaptureStartupPerformance {
 export const captureStartupPerformance = async (): Promise<void> => {
   console.log('Method - This is the Capture Startup Performance class!');
 
-  // Show running notification to the user
-  await vscode.window.withProgress({
-    location: vscode.ProgressLocation.Notification,
-    title: 'SFDX: Capture Startup Performance',
-    cancellable: false
-    }, async (progress) => {
-    progress.report({ message: 'Running...' });
+  try {
+    // Show running notification to the user
+    await vscode.window.withProgress({
+      location: vscode.ProgressLocation.Notification,
+      title: 'SFDX: Capture Startup Performance',
+      cancellable: true
+      }, async (progress) => {
+      progress.report({ message: 'Running...' });
 
-    // open Developer: Startup Performance (open via API - try "perfview.show")
-    await openStartupPerformanceFile();
-    // save startup performance file (TODO: how to do this without popup dialog?)
-    const fileName = await saveCurrentFile();
-    // read startup performance file using fs.readFileSync()
-    const fileContents = await readStartupPerformanceFile(fileName);
-    // parse startup performance file using marked
-    const parsedResults = await parseStartupPerformanceFile(fileContents);
-    // save parsed results to a file
-    await copyContentsToFile(parsedResults);
-    const parsedResultsFile = await saveCurrentFile();
-    // send parsed results to appinsights
-    await sendToAppInsights(parsedResultsFile);
+      // open Developer: Startup Performance (open via API - try "perfview.show")
+      await openStartupPerformanceFile();
+      // save startup performance file (TODO: how to do this without popup dialog?)
+      const fileName = await saveCurrentFile();
+      // read startup performance file using fs.readFileSync()
+      const fileContents = await readStartupPerformanceFile(fileName);
+      // parse startup performance file using marked
+      await sleep(2000);
+      const parsedResults = await parseStartupPerformanceFile(fileContents);
+      // save parsed results to a file
+      await copyContentsToFile(parsedResults);
+      const parsedResultsFile = await saveCurrentFile();
+      // send parsed results to appinsights
+      await sendToAppInsights(parsedResultsFile);
 
-    await sleep(5000);
-  });
+      await sleep(5000);
+    });
 
-  // Show success notification to the user
-  vscode.window.showInformationMessage('SFDX: Capture Startup Performance command completed successfully.');
+    // Show success notification to the user
+    vscode.window.showInformationMessage('SFDX: Capture Startup Performance command completed successfully.');
+  } catch (error) {
+    // Show failure notification to the user
+    vscode.window.showErrorMessage('SFDX: Capture Startup Performance command failed: ' + error.message);
+  }
 
   // TODO: also need to communicate with the customer
     // is it possible to block the UI without also blocking what we need to do?
@@ -64,6 +70,7 @@ const readStartupPerformanceFile = async(fileName: string): Promise<string> => {
 }
 
 const parseStartupPerformanceFile = async(fileContents: string): Promise<string> => {
+  // throw new Error('Error thrown in parseStartupPerformanceFile()');
   return 'parsed contents of Extension Activation Stats table';
 }
 
