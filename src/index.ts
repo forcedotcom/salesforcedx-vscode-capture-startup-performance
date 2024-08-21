@@ -7,10 +7,7 @@
 import * as vscode from 'vscode';
 import { captureStartupPerformance } from './captureStartupPerformance';
 
-const registerCommands = (
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  extensionContext: vscode.ExtensionContext
-): vscode.Disposable => {
+const registerCommands = (): vscode.Disposable => {
   return vscode.commands.registerCommand(
     'sf.capture.startup.performance',
     captureStartupPerformance
@@ -19,7 +16,7 @@ const registerCommands = (
 
 export const activate = async (extensionContext: vscode.ExtensionContext) => {
   console.log('Capture Startup Performance extension - enter activate()');
-  const commands = registerCommands(extensionContext);
+  const commands = registerCommands();
   extensionContext.subscriptions.push(commands);
   console.log('Capture Startup Performance extension - exit activate()');
 }
