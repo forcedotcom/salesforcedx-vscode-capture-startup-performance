@@ -6,7 +6,6 @@
  */
 
 import * as vscode from 'vscode';
-import { delay } from 'lodash';
 
 export class CaptureStartupPerformance {
   constructor() {
