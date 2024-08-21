@@ -11,12 +11,10 @@ const registerCommands = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   extensionContext: vscode.ExtensionContext
 ): vscode.Disposable => {
-  const captureStartupPerformanceCmd = vscode.commands.registerCommand(
+  return vscode.commands.registerCommand(
     'sf.capture.startup.performance',
     captureStartupPerformance
   );
-
-  return vscode.Disposable.from(captureStartupPerformanceCmd);
 }
 
 export const activate = async (extensionContext: vscode.ExtensionContext) => {
