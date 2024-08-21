@@ -38,7 +38,7 @@ export const captureStartupPerformance = async (): Promise<void> => {
       await copyContentsToFile(parsedResults);
       const parsedResultsFile = await saveCurrentFile();
       // send parsed results to appinsights
-      await sendToAppInsights(parsedResultsFile);
+      await sendTelemetryData(parsedResultsFile);
 
       await sleep(5000);
     });
@@ -70,7 +70,7 @@ const parseStartupPerformanceFile = async(fileContents: string): Promise<string>
 
 const copyContentsToFile = async(contents: string): Promise<void> => {}
 
-const sendToAppInsights = async(fileName: string): Promise<void> => {}
+const sendTelemetryData = async(fileName: string): Promise<void> => {}
 
 // NOTE: This function and the lodash dependency are used only for testing purposes.
 const sleep = (ms: number): Promise<void> => {
