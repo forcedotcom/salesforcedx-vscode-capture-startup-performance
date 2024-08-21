@@ -6,6 +6,7 @@
  */
 
 import * as vscode from 'vscode';
+import { sleep } from './utils';
 
 export class CaptureStartupPerformance {
   constructor() {
@@ -71,9 +72,3 @@ const parseStartupPerformanceFile = async(fileContents: string): Promise<string>
 const copyContentsToFile = async(contents: string): Promise<void> => {}
 
 const sendTelemetryData = async(fileName: string): Promise<void> => {}
-
-// NOTE: This function and the lodash dependency are used only for testing purposes.
-const sleep = (ms: number): Promise<void> => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
-
