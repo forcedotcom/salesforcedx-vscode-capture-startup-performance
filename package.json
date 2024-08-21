@@ -21,7 +21,13 @@
     "@types/node": "^18.11.9",
     "@types/jest": "^29.5.12",
     "@types/vscode": "^1.86.0",
-    "@tsconfig/node18": "^18.2.4"
+    "@tsconfig/node18": "^18.2.4",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "7.1.1",
+    "prettier": "3.2.5",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-import": "2.29.1"
   },
   "scripts": {
     "vscode:prepublish": "npm run compile && npm run bundle:extension && npm run update-for-packaging",
@@ -30,7 +36,7 @@
     "watch": "tsc --build --watch",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check .",
-    "lint": "eslint . --ext ts",
+    "lint": "eslint . --ext .ts",
     "update-snapshots": "jest --updateSnapshot",
     "test": "jest --coverage",
     "test-vsix": "ts-node scripts/installVSIXFromBranch.ts code",
