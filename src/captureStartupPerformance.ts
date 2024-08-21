@@ -75,6 +75,6 @@ const sendToAppInsights = async(fileName: string): Promise<void> => {}
 
 // NOTE: This function and the lodash dependency are used only for testing purposes.
 const sleep = (ms: number): Promise<void> => {
-  return new Promise(resolve => delay(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 };
 
