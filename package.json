@@ -62,8 +62,8 @@
     "test": "jest --coverage",
     "bundle:extension": "esbuild ./src/index.ts  --bundle --outfile=dist/index.js --format=cjs --platform=node --external:vscode --minify",
     "vscode:package": "npm run bundle:extension && ts-node  ./scripts/vsce-bundled-extension.ts",
-    "vsix:install": "find ./packages -name '*.vsix' -exec code --install-extension {} \\;",
-    "vsix:install-insiders": "find ./packages -name '*.vsix' -exec code-insiders --install-extension {} \\;",
+    "vsix:install": "find ./ -name '*.vsix' -exec code --install-extension {} \\;",
+    "vsix:install-insiders": "find ./ -name '*.vsix' -exec code-insiders --install-extension {} \\;",
     "reformat": "node scripts/reformat-with-prettier.js"
   },
   "extensionDependencies": [
