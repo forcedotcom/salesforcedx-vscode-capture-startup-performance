@@ -7,7 +7,7 @@
   "repository": {
     "url": "https://github.com/forcedotcom/salesforcedx-vscode-capture-startup-performance"
   },
-  "icon": "images/VSCodeApex.png",
+  "icon": "images/Ruth_trapeze.png",
   "license": "BSD-3-Clause",
   "engines": {
     "vscode": "^1.86.0"
@@ -33,6 +33,23 @@
     "@types/shelljs": "^0.8.15",
     "shelljs": "^0.8.5"
   },
+  "packaging": {
+    "assets": [
+      "LICENSE",
+      "package.nls.json",
+      "README.md",
+      "images",
+      "dist"
+    ],
+    "packageUpdates": {
+      "main": "dist/index.js",
+      "dependencies": {
+        "applicationinsights": "^3.2.2",
+        "shelljs": "^0.8.5"
+      },
+      "devDependencies": {}
+    }
+  },
   "scripts": {
     "compile": "tsc --build",
     "compile:clean": "tsc --build --clean",
@@ -44,7 +61,7 @@
     "update-snapshots": "jest --updateSnapshot",
     "test": "jest --coverage",
     "bundle:extension": "esbuild ./src/index.ts  --bundle --outfile=dist/index.js --format=cjs --platform=node --external:vscode --minify",
-    "vscode:package": "npm run bundle:extension && npm run reformat",
+    "vscode:package": "npm run bundle:extension && ts-node  ./scripts/vsce-bundled-extension.ts",
     "vsix:install": "find ./packages -name '*.vsix' -exec code --install-extension {} \\;",
     "vsix:install-insiders": "find ./packages -name '*.vsix' -exec code-insiders --install-extension {} \\;",
     "reformat": "node scripts/reformat-with-prettier.js"
