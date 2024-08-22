@@ -6,6 +6,7 @@
  */
 import * as vscode from 'vscode';
 import { captureStartupPerformance } from './captureStartupPerformance';
+import { isSalesforceProjectOpened } from './checkOpenSalesforceProject';
 
 const registerCommands = (): vscode.Disposable => {
   return vscode.commands.registerCommand(
@@ -16,6 +17,14 @@ const registerCommands = (): vscode.Disposable => {
 
 export const activate = async (extensionContext: vscode.ExtensionContext) => {
   console.log('Capture Startup Performance extension - enter activate()');
+
+  const salesforceProjectOpened = isSalesforceProjectOpened();
+  await vscode.commands.executeCommand(
+    'setContext',
+    'sf:project_opened',
+    salesforceProjectOpened
+  );
+
   const commands = registerCommands();
   extensionContext.subscriptions.push(commands);
   console.log('Capture Startup Performance extension - exit activate()');

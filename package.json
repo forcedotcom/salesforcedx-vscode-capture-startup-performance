@@ -76,7 +76,8 @@
     "menus": {
       "commandPalette": [
         {
-          "command": "sf.capture.startup.performance"
+          "command": "sf.capture.startup.performance",
+          "when": "sf:project_opened"
         }
       ]
     },
