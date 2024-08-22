@@ -20,7 +20,7 @@
       {
         "js": "never",
         "jsx": "never",
-        "ts": "always",
+        "ts": "never",
         "tsx": "never"
       }
     ],
@@ -28,7 +28,6 @@
     "@typescript-eslint/no-floating-promises": "warn"
   },
   "settings": {
-    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
