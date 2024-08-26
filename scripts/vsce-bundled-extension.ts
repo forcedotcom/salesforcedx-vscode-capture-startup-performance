@@ -9,12 +9,8 @@ import { tmpdir } from 'os';
 import { chdir } from 'process';
 import * as shell from 'shelljs';
 
-const logger = (msg: string, obj?: any) => {
-  if (!obj) {
-    console.log(`*** ${msg}`);
-  } else {
-    console.log(`*** ${msg}`, obj);
-  }
+const logger = (msg: string, ...obj: any[]) => {
+    console.log(`*** ${msg}`, ...obj);
 };
 
 const extensionDirectory = process.cwd();
