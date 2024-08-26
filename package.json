@@ -7,7 +7,7 @@
   "repository": {
     "url": "https://github.com/forcedotcom/salesforcedx-vscode-capture-startup-performance"
   },
-  "icon": "images/Ruth_trapeze.png",
+  "icon": "images/VSCodeBundle.png",
   "license": "BSD-3-Clause",
   "engines": {
     "vscode": "^1.86.0"
