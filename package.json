@@ -1,7 +1,7 @@
 {
   "name": "salesforcedx-vscode-capture-startup-performance",
   "displayName": "Capture Extension Startup Performance",
-  "description": "Extension that captures the Extension Activation Stats from 'Developer: Startup Performance' and reports the data to Azure AppInsights",
+  "description": "Extension that captures the Extension Activation Stats from 'Developer: Startup Performance' and reports the data via telemetry",
   "version": "1.0.0",
   "publisher": "salesforce",
   "repository": {
