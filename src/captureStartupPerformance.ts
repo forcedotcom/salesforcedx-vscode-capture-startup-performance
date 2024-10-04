@@ -41,9 +41,7 @@ export const captureStartupPerformance = async (): Promise<void> => {
         progress.report({
           message: 'Closing Capture Startup Performance view...'
         });
-        await vscode.commands.executeCommand(
-          'workbench.action.closeActiveEditor'
-        );
+        await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
 
         progress.report({ message: 'Parsing captured contents...' });
         const parsedResults = await parseStartupPerformanceFile(contents);
@@ -54,14 +52,10 @@ export const captureStartupPerformance = async (): Promise<void> => {
     );
 
     // Show success notification to the user
-    vscode.window.showInformationMessage(
-      'SFDX: Capture Startup Performance command completed successfully.'
-    );
+    vscode.window.showInformationMessage('SFDX: Capture Startup Performance command completed successfully.');
   } catch (error) {
     // Show failure notification to the user
-    vscode.window.showErrorMessage(
-      'SFDX: Capture Startup Performance command failed: ' + error.message
-    );
+    vscode.window.showErrorMessage('SFDX: Capture Startup Performance command failed: ' + error.message);
   }
 };
 
@@ -80,10 +74,7 @@ const captureStartupPerfContents = async (): Promise<string> => {
   }
 };
 
-const sendTelemetryData = async (
-  extensionStats: ExtensionActivationStats[],
-  stableData: boolean
-): Promise<void> => {
+const sendTelemetryData = async (extensionStats: ExtensionActivationStats[], stableData: boolean): Promise<void> => {
   for (const extensionStat of extensionStats) {
     // for now log to debug
     console.log(`Perf Data: ${extensionStat} stableData: ${stableData}`);

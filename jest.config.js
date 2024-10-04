@@ -7,10 +7,7 @@ module.exports = {
     '/node_modules/',
     '/lib/' // Add this line to ignore the lib directory
   ],
-  reporters: [
-    'default',
-    ['jest-junit', { outputName: 'junit-custom-unitTests.xml' }]
-  ],
+  reporters: ['default', ['jest-junit', { outputName: 'junit-custom-unitTests.xml' }]],
   coverageReporters: ['lcov', 'text'],
   resetMocks: true
 };

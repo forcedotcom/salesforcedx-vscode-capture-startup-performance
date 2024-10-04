@@ -26,19 +26,13 @@ import { ExtensionActivationStats, ElementAttributes } from '../types';
  * @returns
  */
 // export for testing
-export const parseStartupPerformanceFile = async (
-  fileContents: string
-): Promise<ExtensionActivationStats[]> => {
+export const parseStartupPerformanceFile = async (fileContents: string): Promise<ExtensionActivationStats[]> => {
   const parsedData = marked.lexer(fileContents);
   const extensionStats: ExtensionActivationStats[] = [];
 
   // Traverse the parsed data
   parsedData.forEach(token => {
-    if (
-      token.type === 'heading' &&
-      token.depth === 2 &&
-      token.text === 'Extension Activation Stats'
-    ) {
+    if (token.type === 'heading' && token.depth === 2 && token.text === 'Extension Activation Stats') {
       // Found the section for Extension Activation Stats
       let inTable = false;
       let headers: ElementAttributes[] = [];
@@ -100,7 +94,5 @@ export const parseStartupPerformanceFile = async (
     }
   });
 
-  return extensionStats.filter(extensionStat =>
-    extensionStat.extension.startsWith('salesforce.salesforcedx')
-  );
+  return extensionStats.filter(extensionStat => extensionStat.extension.startsWith('salesforce.salesforcedx'));
 };

@@ -8,10 +8,7 @@ import * as vscode from 'vscode';
 import { captureStartupPerformance } from './captureStartupPerformance';
 
 const registerCommands = (): vscode.Disposable => {
-  return vscode.commands.registerCommand(
-    'sf.capture.startup.performance',
-    captureStartupPerformance
-  );
+  return vscode.commands.registerCommand('sf.capture.startup.performance', captureStartupPerformance);
 };
 
 export const activate = async (extensionContext: vscode.ExtensionContext) => {

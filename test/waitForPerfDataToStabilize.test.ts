@@ -44,41 +44,25 @@ function createFetchContent(genPattern: GetPattern): () => string {
 }
 describe('waitForPerfDataToStabilize', () => {
   it('should resolve when content stabilizes within the timeout', async () => {
-    const stable = await waitForPerfDataToStabilize(
-      500,
-      10,
-      createFetchContent('unstableToStable')
-    );
+    const stable = await waitForPerfDataToStabilize(500, 10, createFetchContent('unstableToStable'));
 
     expect(stable).toBe(true);
   });
 
   it('should return false when not stable with timeout', async () => {
-    const stable = await waitForPerfDataToStabilize(
-      500,
-      10,
-      createFetchContent('random')
-    );
+    const stable = await waitForPerfDataToStabilize(500, 10, createFetchContent('random'));
 
     expect(stable).toBe(false);
   });
 
   it('should resolve immediately if content is already stable', async () => {
-    const stable = await waitForPerfDataToStabilize(
-      500,
-      10,
-      createFetchContent('constant')
-    );
+    const stable = await waitForPerfDataToStabilize(500, 10, createFetchContent('constant'));
 
     expect(stable).toBe(true);
   });
 
   it('should resolve when content stabilizes for the required number of consecutive checks', async () => {
-    const stable = await waitForPerfDataToStabilize(
-      500,
-      10,
-      createFetchContent('unstableToStable')
-    );
+    const stable = await waitForPerfDataToStabilize(500, 10, createFetchContent('unstableToStable'));
 
     expect(stable).toBe(true);
   });
