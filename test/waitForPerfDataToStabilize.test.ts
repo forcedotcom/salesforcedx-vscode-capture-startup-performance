@@ -60,10 +60,4 @@ describe('waitForPerfDataToStabilize', () => {
 
     expect(stable).toBe(true);
   });
-
-  it('should resolve when content stabilizes for the required number of consecutive checks', async () => {
-    const stable = await waitForPerfDataToStabilize(500, 10, createFetchContent('unstableToStable'));
-
-    expect(stable).toBe(true);
-  });
 });

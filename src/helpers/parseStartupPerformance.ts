@@ -63,10 +63,12 @@ export const parseStartupPerformanceFile = async (fileContents: string): Promise
                   rowData.eager = row[index].text === 'true';
                   break;
                 case 'Load Code':
-                  rowData.loadCode = parseInt(row[index].text);
+                  const loadCode = parseInt(row[index].text);
+                  rowData.loadCode = Number.isInteger(loadCode) ? loadCode  : undefined;
                   break;
                 case 'Call Activate':
-                  rowData.callActivate = parseInt(row[index].text);
+                  const callActivate = parseInt(row[index].text);
+                  rowData.callActivate = Number.isInteger(callActivate) ? callActivate : undefined;
                   break;
                 case 'Event':
                   rowData.event = row[index].text;
@@ -75,7 +77,8 @@ export const parseStartupPerformanceFile = async (fileContents: string): Promise
                   rowData.by = row[index].text;
                   break;
                 case 'Finish Activate':
-                  rowData.finishActivate = parseInt(row[index].text);
+                  const finishActivate = parseInt(row[index].text);
+                  rowData.finishActivate = Number.isInteger(finishActivate) ? finishActivate : undefined;
                   break;
                 default:
                   break;

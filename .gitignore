@@ -3,3 +3,5 @@ out/
 dist/
 /coverage
 /junit-custom-unitTests.xml
+*.vsix
+/extension

@@ -8,9 +8,9 @@
 export type ExtensionActivationStats = {
   extension: string;
   eager: boolean;
-  loadCode: number;
-  callActivate: number;
-  finishActivate: number;
+  loadCode?: number;
+  callActivate?: number;
+  finishActivate?: number;
   event: string;
   by: string;
 };
