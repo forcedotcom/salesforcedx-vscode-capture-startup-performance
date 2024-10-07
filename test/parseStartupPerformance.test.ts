@@ -6,7 +6,7 @@
  */
 import { parseStartupPerformanceFile } from '../src/helpers/parseStartupPerformance';
 
-describe('parseStartupPerformanceFile', () => {
+describe('parseStartupPerformance', () => {
   it('should parse a valid markdown file with the expected table structure', async () => {
     const fileContents = `
 ## Extension Activation Stats
@@ -49,6 +49,17 @@ describe('parseStartupPerformanceFile', () => {
 
     const result = await parseStartupPerformanceFile(fileContents);
     expect(result).toEqual([]);
+  });it('should handle a markdown file with the "Extension Activation Stats" section but invalid table format', async () => {
+    const fileContents = `
+## Extension Activation Stats
+
+| Column1 | Column2 |
+|---------|---------|
+| value1  | value2  |
+`;
+
+    const result = await parseStartupPerformanceFile(fileContents);
+    expect(result).toEqual([]);
   });
 
   it('should handle a markdown file with an incomplete table', async () => {
@@ -58,6 +69,7 @@ describe('parseStartupPerformanceFile', () => {
 | Extension                           | Eager | Load Code | Call Activate | Finish Activate | Event                                    | By                                  |
 |-------------------------------------|-------|-----------|---------------|-----------------|------------------------------------------|-------------------------------------|
 | salesforce.salesforcedx-vscode-core | true  | 123       |               | 789             | onStartupFinished                        | vscode                              |
+| salesforce.salesforcedx-vscode-apex | false | 321       | 543           | 111             | onStartupFinished                        | vscode                              |
 `;
 
     const result = await parseStartupPerformanceFile(fileContents);
@@ -70,8 +82,16 @@ describe('parseStartupPerformanceFile', () => {
         finishActivate: 789,
         event: 'onStartupFinished',
         by: 'vscode'
+      },
+      {
+        extension: 'salesforce.salesforcedx-vscode-apex',
+        eager: false,
+        loadCode: 321,
+        callActivate: 543,
+        finishActivate: 111,
+        event: 'onStartupFinished',
+        by: 'vscode'
       }
     ]);
   });
-
 });
