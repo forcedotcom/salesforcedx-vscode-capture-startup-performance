@@ -49,7 +49,9 @@ describe('parseStartupPerformance', () => {
 
     const result = await parseStartupPerformanceFile(fileContents);
     expect(result).toEqual([]);
-  });it('should handle a markdown file with the "Extension Activation Stats" section but invalid table format', async () => {
+  });
+  
+  it('should handle a markdown file with the "Extension Activation Stats" section but invalid table format', async () => {
     const fileContents = `
 ## Extension Activation Stats
 
