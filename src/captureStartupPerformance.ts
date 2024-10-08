@@ -6,43 +6,49 @@
  */
 
 import * as vscode from 'vscode';
-import { sleep } from './utils';
-
-export class CaptureStartupPerformance {
-  constructor() {
-    console.log('Constructor - This is the Capture Startup Performance class!');
-  }
-}
+import { ExtensionActivationStats } from './types';
+import { parseStartupPerformanceFile } from './helpers/parseStartupPerformance';
+import { waitForPerfDataToStabilize } from './helpers/waitForPerfDataToStabilize';
 
 export const captureStartupPerformance = async (): Promise<void> => {
   console.log('Method - This is the Capture Startup Performance class!');
 
   try {
     // Show running notification to the user
-    await vscode.window.withProgress({
-      location: vscode.ProgressLocation.Notification,
-      title: 'SFDX: Capture Startup Performance',
-      cancellable: false
-      }, async (progress) => {
-      progress.report({ message: 'Running...' });
+    await vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: 'SFDX: Capture Startup Performance',
+        cancellable: false
+      },
+      async progress => {
+        progress.report({ message: 'Running...' });
 
-      // open Developer: Startup Performance (open via API - try "perfview.show")
-      await openStartupPerformanceFile();
-      // save startup performance file (TODO: how to do this without popup dialog?)
-      const fileName = await saveCurrentFile();
-      // read startup performance file using fs.readFileSync()
-      const fileContents = await readStartupPerformanceFile(fileName);
-      // parse startup performance file using marked
-      await sleep(2000);
-      const parsedResults = await parseStartupPerformanceFile(fileContents);
-      // save parsed results to a file
-      await copyContentsToFile(parsedResults);
-      const parsedResultsFile = await saveCurrentFile();
-      // send parsed results to appinsights
-      await sendTelemetryData(parsedResultsFile);
+        // open Developer: Startup Performance (open via API - try "perfview.show")
+        const perfStatsDoc = await openStartupPerformanceFile();
 
-      await sleep(5000);
-    });
+        progress.report({
+          message: 'Closing Capture Startup Performance view...'
+        });
+        await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+
+        progress.report({
+          message: 'Waiting for Startup Performance view to stabilize...'
+        });
+        const stable = await waitForPerfDataToStabilize(5000, 500, () => {
+          return perfStatsDoc ? perfStatsDoc.getText() : '';
+        }); // Wait for 5 seconds, checking every 500ms
+
+        progress.report({ message: 'Capturing Startup Performance Data...' });
+        const contents = await captureStartupPerfContents(perfStatsDoc);
+
+        progress.report({ message: 'Parsing captured contents...' });
+        const parsedResults = await parseStartupPerformanceFile(contents);
+
+        // send parsed results to appinsights
+        await sendTelemetryData(parsedResults, stable);
+      }
+    );
 
     // Show success notification to the user
     vscode.window.showInformationMessage('SFDX: Capture Startup Performance command completed successfully.');
@@ -54,21 +60,25 @@ export const captureStartupPerformance = async (): Promise<void> => {
 
 // ------- Helper Functions -------
 
-const openStartupPerformanceFile = async(): Promise<void> => {}
+const openStartupPerformanceFile = async (): Promise<vscode.TextDocument | undefined> => {
+  await vscode.commands.executeCommand('perfview.show');
+  const activeEditor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
+  return activeEditor?.document;
+};
 
-const saveCurrentFile = async(): Promise<string> => {
-  return 'filename of saved file';
-}
+const captureStartupPerfContents = async (document: vscode.TextDocument | undefined): Promise<string> => {
+  if (document) {
+    return document.getText();
+  } else {
+    return '';
+  }
+};
 
-const readStartupPerformanceFile = async(fileName: string): Promise<string> => {
-  return 'contents of startup performance file';
-}
+const sendTelemetryData = async (extensionStats: ExtensionActivationStats[], stableData: boolean): Promise<void> => {
+  console.log(`Perf Data: found stats for ${extensionStats.length} extensions`);
 
-const parseStartupPerformanceFile = async(fileContents: string): Promise<string> => {
-  // throw new Error('Error thrown in parseStartupPerformanceFile()');
-  return 'parsed contents of Extension Activation Stats table';
-}
-
-const copyContentsToFile = async(contents: string): Promise<void> => {}
-
-const sendTelemetryData = async(fileName: string): Promise<void> => {}
+  for (const extensionStat of extensionStats) {
+    // for now log to debug
+    console.log(`Perf Data: ${extensionStat.extension} finish activate time: ${extensionStat.finishActivate} stableData: ${stableData}`);
+  }
+};
